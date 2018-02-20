@@ -14,7 +14,10 @@ module.exports = function(app){
 // pilotes
     app.get('/repertoirePilote', PiloteController.Repertoire);
     //Pour récuperer la variable en GET
-    app.get('/repertoirePilote/:lettre', PiloteController.ListePiloteLettre)
+    app.get('/repertoirePilote/:lettre', PiloteController.ListePiloteLettre);
+
+    // On récupère les informations d'un pilote
+    app.get('/detailPilote/:nom', PiloteController.InformationPilotes);
 
  // circuits
    app.get('/circuits', CircuitController.ListerCircuit);

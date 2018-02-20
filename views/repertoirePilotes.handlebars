@@ -8,7 +8,7 @@
   {{#each listePilote}}
     <li>
       <img src="/image/pilote/{{this.phoadresse}}"/>
-      <strong>{{this.pilprenom}} {{this.pilnom}}</strong>
+      <a href="/detailPilote/{{this.pilnom}}">{{this.pilprenom}} {{this.pilnom}}</a>
     </li>
   {{/each}}
 </ul>

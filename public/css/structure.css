@@ -51,7 +51,7 @@
  	  -moz-border-radius:15px;
  	  border-radius:15px;
  }
- 
+
  .myboth  {
  	  clear:both;
  }
@@ -59,3 +59,12 @@
  	text-decoration:none;
  	color:#0072ff;
  }
+ #listeImagesPilotes li{
+   list-style-type: none;
+   display:inline-block;
+ }
+
+  #listeImagesPilotes li img{
+    width: 150px;
+    height: 100px;
+  }
