@@ -77,3 +77,8 @@
     max-width: 500px;
     max-height: 500px;
   }
+
+  #tableauResultats{
+    width:70%;
+    display: inline-block;
+  }

@@ -31,6 +31,9 @@ module.exports = function(app){
  //Résultats
    app.get('/resultats', ResultatController.ListerResultat);
 
+// Détails des resultats
+   app.get('/resultats/:gp', ResultatController.InformationResultats);
+
 
 // tout le reste
   app.get('*', HomeController.Index);

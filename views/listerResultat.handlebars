@@ -1,1 +1,42 @@
 <h1>Liste des résulats</h1>
+
+{{#if informationResultats}}
+<table id="tableauResultats">
+  <tr>
+    <th> Place </th>
+    <th> Pilote </th>
+    <th> Temps </th>
+    <th> Nb points </th>
+  </tr>
+
+
+  {{#each informationResultats}}
+  <tr>
+    <td></td>
+    <td>{{this.PILNOM}}</td>
+    <td>{{this.TEMPSCOURSE}}</td>
+    <td>{{this.PILPOINTS}}</td>
+  </tr>
+  {{/each}}
+
+</table>
+
+{{/if}}
+
+
+<table class="tabpayscir">
+	 {{#each listeResultats}}
+			<tr><td><img src="../image/pays/{{this.PAYADRDRAP}}" alt="drapeau du pays" />
+      <a href="/resultats/{{this.GPNOM}}"> {{this.GPNOM}}</a>
+    </td></tr>
+ {{/each}}
+</table>
+<br class="myboth" />
+
+{{#if informationTexteResultats}}
+{{#each informationTexteResultats}}
+
+<p>{{this.GPCOMMENTAIRE}}</p>
+
+{{/each}}
+{{/if}}
