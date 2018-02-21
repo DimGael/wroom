@@ -22,6 +22,9 @@ module.exports = function(app){
  // circuits
    app.get('/circuits', CircuitController.ListerCircuit);
 
+// On récupère les informations d'un circuit
+   app.get('/circuits/:circuit', CircuitController.InformationCircuits);
+
 // Ecuries
    app.get('/ecuries', EcurieController.ListerEcurie);
 

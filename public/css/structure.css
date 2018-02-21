@@ -68,3 +68,12 @@
     width: 150px;
     height: 100px;
   }
+
+  #detailCircuit{
+    width:70%;
+    display:inline-block;
+  }
+  #detailCircuit img{
+    max-width: 500px;
+    max-height: 500px;
+  }
