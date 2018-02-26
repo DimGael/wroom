@@ -10,9 +10,9 @@
         "express": "^4.16.2",
         "express-handlebars": "^3.0.0",
         "express-session": "~1.15",
+        "moment": "~2.11",
         "mysql": "^2.15.0",
         "string": "^3.3.3",
-        "moment": "~2.11",
         "unidecode": "^0.1.8"
     },
     "devDependencies": {

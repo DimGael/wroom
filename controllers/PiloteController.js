@@ -1,5 +1,5 @@
 let model = require('../models/pilote.js');
-
+let async = require('async');
 // ///////////////////////// R E P E R T O I R E    D E S    P I L O T E S
 
 module.exports.Repertoire = function(request, response){
@@ -45,48 +45,45 @@ module.exports.InformationPilotes = function(request, response){
   let nom = request.params.nom;
   response.title = 'Répertoire des pilotes : recherche d information sur un pilote';
 
+  async.parallel([
+    function(callback){
+      model.getLettresPilotes( function (err, result) {callback(null,result)});
+    },
 
-  model.getLettresPilotes( function (err, result) {
-     if (err) {
-         // gestion de l'erreur
-         console.log(err);
-         return;
-     }
-  response.listeLettres = result;
-  });
+    function(callback){
+      model.getListeImagesPilotes(nom, function (err, result) {callback(null,result)});
+    },
 
-  model.getListeImagesPilotes(nom, function (err, result) {
-    if (err) {
-        // gestion de l'erreur
-        console.log(err);
-        return;
+    function(callback){
+      model.getInformationPilotes(nom, function(err,result){callback(null,result)});
+    },
+
+    function(callback){
+      model.getSponsorPilotes(nom, function(err,result){callback(null,result)});
+    },
+
+    function(callback){
+      model.getEcuriePilotes(nom,function(err,result){callback(null,result)});
     }
-    response.listeImagesPilotes = result;
-    });
+  ],
 
-    model.getInformationPilotes(nom, function(err,result){
+    function(err,result){
       if (err){
         console.log(err);
         return;
       }
-      response.informationPilotes = result;
+      response.listeLettres = result[0];
 
-    });
+      response.listeImagesPilotes = result[1];
 
-    model.getSponsorPilotes(nom, function(err,result){
-      if (err){
-        console.log(err);
-        return;
-      }
-      response.sponsorPilotes = result;
-    });
+      response.informationPilotes = result[2];
 
-    model.getEcuriePilotes(nom,function(err,result){
-      if (err){
-        console.log(err);
-        return;
-      }
-      response.ecuriePilotes = result;
+      response.sponsorPilotes = result[3];
+
+      response.ecuriePilotes = result[4];
+
       response.render('detailPilote', response);
-    });
+    }
+  );
+
 }
