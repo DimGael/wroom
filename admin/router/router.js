@@ -1,22 +1,20 @@
 
-let HomeController = require('./../controllers/HomeController');
-let ResultatController = require('./../controllers/ResultatController');
-let EcurieController = require('./../controllers/EcurieController');
+let ConnexionController = require('./../controllers/ConnexionController');
 let PiloteController = require('./../controllers/PiloteController');
-let CircuitController = require('./../controllers/CircuitController');
 
 
 // Routes
 module.exports = function(app){
 
 // Main Routes
-    app.get('/', HomeController.Index);
+    //La route principale mène à la connexion au site, si la personne est connectée, n'affiche rien
+    app.get('/', ConnexionController.Index);
+    app.post('/connexion', ConnexionController.Connexion);
 
-    app.get('/pilote', PiloteController.IndexAdminPilote);
-
+    app.get('/pilotes', PiloteController.IndexAdminPilote);
 
 // tout le reste
-  app.get('*', HomeController.Index);
-  app.post('*', HomeController.Index);
+  app.get('*', ConnexionController.Index);
+  app.post('*', ConnexionController.Index);
 
 };
