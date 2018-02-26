@@ -25,7 +25,21 @@
 	<div id="contenu">
 		<br/>
 		<br/>
+		{{#if connecte}}
 			{{{body}}}
+		{{else}}
+
+			{{#if dansHome}}
+				{{body}}
+				<!-- bug If imbriqué -->
+			{{else}}
+			<p>
+				Vous n'êtes pas connecté, ... <a href="/">Connectez-vous</a>.
+			</p>
+			{{/if}}
+
+
+		{{/if}}
 	</div>
 				<div id="footer">
 					L'encyclopédie de la F1 depuis janvier 2018 (en NodeJS)

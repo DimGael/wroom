@@ -15,6 +15,15 @@ module.exports.Repertoire = function(request, response){
  });
 }
 
+
+module.exports.IndexAdminPilote = function(request, response){
+    //Récupération du nom en paramètre
+    let nom = request.params.nom;
+    response.title = 'indexAdminPilote';
+    response.connecte = true
+    response.render('piloteAdmin', response)
+}
+
 module.exports.ListePiloteLettre = function(request, response){
   //Récupération de la lettre en paramètre
   let lettre = request.params.lettre;
@@ -89,4 +98,6 @@ module.exports.InformationPilotes = function(request, response){
       response.ecuriePilotes = result;
       response.render('detailPilote', response);
     });
+
+
 }
