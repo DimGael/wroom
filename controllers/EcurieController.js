@@ -15,3 +15,30 @@ module.exports.ListerEcurie = function(request, response){
         response.render('listerEcurie', response);
 });
 }
+
+module.exports.InformationEcuries=function(request, response){
+  let ecurie = request.params.ecurie;
+  response.title = 'Liste des écuries : détail d une écurie';
+
+  async.parallel([
+    function(callback){
+      model.getListeEcurie(function (err, result) {callback(null,result)});
+    },
+
+    function(callback){
+      model.getInformationEcuries(ecurie,function (err, result) {callback(null,result)});
+    }
+  ],
+
+    function(err,result){
+      if (err){
+        console.log(err);
+        return;
+      }
+      response.getListeEcurie = result[0];
+
+      response.getInformationEcuries = result[1];
+
+      response.render('listerEcurie', response);
+    }
+  );

@@ -28,6 +28,10 @@ module.exports = function(app){
 // Ecuries
    app.get('/ecuries', EcurieController.ListerEcurie);
 
+// On récupère les informations d'une écurie
+
+  app.get('/ecuries/:ecurie', EcurieController.InformationEcuries')
+
  //Résultats
    app.get('/resultats', ResultatController.ListerResultat);
 
