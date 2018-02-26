@@ -14,8 +14,35 @@
 <table class="tabpayscir">
 	 {{#each listeEcurie}}
 		<tr><td><img src="/image/pays/{{this.payadrdrap}}" alt="drapeau du pays" />
-      <a href="/detailEcurie/{{this.ecunum}}"> {{this.ecunom}}</a>
+      <a href="/ecuries/{{this.ecunom}}"> {{this.ecunom}}</a>
     </td></tr>
- {{/each}}
+	{{/each}}
+
 </table>
+<ul>
+{{#each informationEcuries}}
+	<li>{{this.ECUNOM}}</li>
+	<li>{{this.ECUNOMDIR}}</li>
+	<li>{{this.ECUADRSIEGE}}</li>
+	<li>{{this.PAYNOM}}</li>
+
+{{/each}}
+</ul>
+
+{{#if pilotesEcurieDansUnGp}}
+	<ul>
+	{{#each pilotesEcurieDansUnGp}}
+		<li>{{this.PILPRENOM}} {{this.PILNOM}} </li>
+	{{/each}}
+	</ul>
+
+	<ul>
+	{{#each photosVoituresEcuries}}
+		<li id="imageVoitures"><img src="../image/ecurie/voiture/{{this.VOIADRESSEIMAGE}}" alt="image voiture"/></li>
+	{{/each}}
+	</ul>
+
+{{else}}
+	<p> Cette écurie ne participe pas au championnat cette année ou aucune écurie n'a été sélectionné</p>
+{{/if}}
 <br class="myboth" />

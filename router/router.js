@@ -30,7 +30,7 @@ module.exports = function(app){
 
 // On récupère les informations d'une écurie
 
-  app.get('/ecuries/:ecurie', EcurieController.InformationEcuries')
+  app.get('/ecuries/:ecurie', EcurieController.InformationEcuries);
 
  //Résultats
    app.get('/resultats', ResultatController.ListerResultat);

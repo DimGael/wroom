@@ -1,5 +1,5 @@
 let model = require('../models/ecurie.js');
-
+let async = require('async');
    // //////////////////////// L I S T E R  E C U R I E S
    //ListerEcurie est le nom de la fonction
 module.exports.ListerEcurie = function(request, response){
@@ -27,6 +27,13 @@ module.exports.InformationEcuries=function(request, response){
 
     function(callback){
       model.getInformationEcuries(ecurie,function (err, result) {callback(null,result)});
+    },
+
+    function(callback){
+      model.getPilotesEcurieDansUnGp(ecurie,function (err, result) {callback(null,result)});
+    },
+    function(callback){
+      model.getPhotosVoituresEcuries(ecurie,function (err, result) {callback(null,result)});
     }
   ],
 
@@ -35,10 +42,15 @@ module.exports.InformationEcuries=function(request, response){
         console.log(err);
         return;
       }
-      response.getListeEcurie = result[0];
+      response.listeEcurie = result[0];
 
-      response.getInformationEcuries = result[1];
+      response.informationEcuries = result[1];
+
+      response.pilotesEcurieDansUnGp = result[2];
+
+      response.photosVoituresEcuries = result[3];
 
       response.render('listerEcurie', response);
     }
   );
+}

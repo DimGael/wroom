@@ -90,3 +90,11 @@
   	margin: auto;
   	padding:10px;
   }
+
+  #imageVoitures{
+    display: inline-block;
+  }
+  #imageVoitures img{
+    width: 200px;
+    height: 150px;
+  }
