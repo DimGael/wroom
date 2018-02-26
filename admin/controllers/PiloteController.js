@@ -20,7 +20,7 @@ module.exports.IndexAdminPilote = function(request, response){
     //Récupération du nom en paramètre
     let nom = request.params.nom;
     response.title = 'indexAdminPilote';
-    response.connecte = true
+    response.connecte = request.session.connecte
     response.render('piloteAdmin', response)
 }
 
