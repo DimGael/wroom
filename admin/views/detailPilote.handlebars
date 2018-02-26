@@ -1,0 +1,53 @@
+<h1>Cliquez sur une lettre pour trouver un pilote :</h1>
+{{#each listeLettres}}
+  <a href="/repertoirePilote/{{this.lettre}}">{{this.lettre}}</a>
+{{/each}}
+
+{{#each informationPilotes}}
+
+  <ul id="informationPilotes">
+    <li><strong> Nom :</strong> {{this.PILNOM}} {{this.PILPRENOM}}</li>
+    <li><strong> Date de naissance : </strong>{{this.PILDATENAIS}}</li>
+    <li><strong> Poids : </strong>{{this.PILPOIDS}}</li>
+    <li><strong> Nationalité : </strong>{{this.PAYNOM}}</li>
+    <li><strong> Taille : </strong>{{this.PILTAILLE}}</li>
+    <li><strong> Qui suis-je ? :</strong> {{this.PILTEXTE}} </li>
+
+</ul>
+
+{{/each}}
+
+{{#if ecuriePilotes}}
+{{#each ecuriePilotes}}
+<ul>
+<li><strong> Ecurie : </strong>{{ECUNOM}}</li>
+</ul>
+{{/each}}
+{{else}}
+<ul>
+<li><strong> Ecurie : </strong>pas d'écurie en 2018</li>
+</ul>
+
+{{/if}}
+
+{{#if sponsorPilotes}}
+<ul id="sponsors">
+  <li>Principaux sponsors : </li>
+
+
+{{#each sponsorPilotes}}
+
+  <li><strong>{{this.SPONOM}}</strong> ({{this.SPOSECTACTIVITE}})</li>
+
+{{/each}}
+
+</ul>
+{{/if}}
+
+<ul id="listeImagesPilotes">
+  {{#each listeImagesPilotes}}
+  <li>
+    <img src="/image/pilote/{{this.PHOADRESSE}}"/>
+  </li>
+  {{/each}}
+</ul>
