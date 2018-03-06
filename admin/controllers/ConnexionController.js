@@ -14,6 +14,7 @@ module.exports.Index = function(request, response){
 module.exports.Connexion = function(request, response){
     response.title = "Connexion en cours";
 
+    //Pour que le contenu de la page s'affiche même lorsque l'on est pas connecté.
     response.connecte = true;
 
     let mdp = request.body.mdp;
@@ -33,6 +34,13 @@ module.exports.Connexion = function(request, response){
             return;
         }
         response.listeLogin = result[0];
+        if(result[0] !== null){
+          console.log("Vous êtes connecté")
+          request.session.connecte = true;
+        }
+        else{
+        request.session.connecte = false;
+      }
 
         response.mdp = mdp;
 
