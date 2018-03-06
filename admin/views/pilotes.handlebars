@@ -1,1 +1,21 @@
-<h1>Pilote</h1>
+<h1>Gestion des pilotes :</h1>
+<h2><a href="pilotes/ajouterPilote"> Ajouter un pilote </a></h2>
+{{#if listePilote}}
+<table>
+  <tr><th> Nom </th>
+      <th> Prénom </th>
+      <th> Date de naissance </th>
+      <th> Actions </th>
+  </tr>
+{{#each listePilote}}
+<tr>  <td> {{this.PILNOM}} </td>
+      <td> {{this.PILPRENOM}} </td>
+      <td>{{this.PILDATENAIS}} </td>
+      <td> <a href="/pilotes/modifierPilote/{{this.PILNOM}}">Modifier </a> <a href="/pilotes/supprimerPilote/{{this.PILNOM}}"> Supprimer </a>
+</tr>
+{{/each}}
+</table>
+{{else}}
+  <p>Aucun pilote présent</p>
+
+{{/if}}

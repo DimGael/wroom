@@ -9,25 +9,28 @@
   Date de naissance :
   <input type="number" id="jourNaissance" name="jourNaissance" size="2"> /
    <input type="number" id="moisNaissance" name="moisNaissance" size="2"> /
-   <input type="number" id="anneeNaissance" name="anneeNaissance" size="4"> <br>
-
+   <input type="number" id="anneeNaissance" name="anneeNaissance" size="4"> </br>
+   </br>
    Nationalité : <select id="nationalite">
-     <option value="Allemande">Allemande</option>
-     <option value="Française">Française</option>
+     {{#each nationalitePilote}}
+     <option value="{{this.PAYNAT}}">{{this.PAYNAT}}</option>
+     {{/each}}
    </select>
-
+  </br>
    Ecurie : <select id="ecurie">
-     <option value="Ferrari">Ferrari</option>
-     <option value="Hyundai">Hyundai</option>
+     {{#each ecuriePilote}}
+     <option value="{{this.ECUNOM}}">{{this.ECUNOM}}</option>
+     {{/each}}
    </select>
+  </br>
 
-   Points : <input type="number" name="points"> pts <br>
+   Points : <input type="number" name="points"> pts </br>
 
-   Taille : <input type="number" name="taille"> pts <br>
+   Taille : <input type="number" name="taille"> pts </br>
 
    Description :
-   <textarea rows="10" cols="50" name="description" id="description">
-   </textarea>
+   <textarea rows="1" cols="10" name="description" id="description">
+   </textarea></br></br>
 
    <input type="submit" value="AJOUTER">
 </form>

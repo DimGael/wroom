@@ -110,7 +110,7 @@ module.exports.getEcuriePilotes = function(nom, callback){
 
 		//Il peut être important de loger la requête SQL dans la console
 		//console.log ("getEcuriePilotes : "+sql);
-		
+
 		connexion.query(sql, callback);
 
 		// la connexion retourne dans le pool
@@ -118,4 +118,55 @@ module.exports.getEcuriePilotes = function(nom, callback){
 
 		}
 	});
-}
+};
+
+// Récuperation de la liste des pilotes
+
+module.exports.getPilotes = function (callback) {
+   // connection à la base
+	db.getConnection(function(err, connexion){
+        if(!err){
+						let sql ="SELECT PILNOM,PILPRENOM,PILDATENAIS FROM pilote ORDER BY PILNOM";
+						//Il peut être important de loger la requête SQL dans la console
+						console.log ("getLettresPilotes : "+sql);
+            connexion.query(sql, callback);
+
+            // la connexion retourne dans le pool
+            connexion.release();
+
+         }
+      });
+};
+
+
+module.exports.getNationalite = function (callback) {
+   // connection à la base
+	db.getConnection(function(err, connexion){
+        if(!err){
+						let sql ="SELECT PAYNAT FROM pays ORDER BY PAYNAT";
+						//Il peut être important de loger la requête SQL dans la console
+						//console.log ("getNationalite : "+sql);
+            connexion.query(sql, callback);
+
+            // la connexion retourne dans le pool
+            connexion.release();
+
+         }
+      });
+};
+
+module.exports.getEcurie = function (callback) {
+   // connection à la base
+	db.getConnection(function(err, connexion){
+        if(!err){
+						let sql ="SELECT ECUNOM FROM ecurie ORDER BY ECUNOM";
+						//Il peut être important de loger la requête SQL dans la console
+						//console.log ("getNationalite : "+sql);
+            connexion.query(sql, callback);
+
+            // la connexion retourne dans le pool
+            connexion.release();
+
+         }
+      });
+};
