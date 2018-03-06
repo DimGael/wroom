@@ -13,8 +13,8 @@ module.exports = function(app){
 
     app.get('/pilotes', PiloteController.IndexAdminPilote);
 
-    app.get('/ajouterPilote', PiloteController.AjouterPilote);
-    app.post('/ajouterPilote/pilote', PiloteController.ValiderAjouterPilote);
+  //  app.get('/ajouterPilote', PiloteController.AjouterPilote);
+    //app.post('/ajouterPilote/pilote', PiloteController.ValiderAjouterPilote);
 
 // tout le reste
   app.get('*', ConnexionController.Index);
