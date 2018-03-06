@@ -34,13 +34,15 @@ module.exports.Connexion = function(request, response){
             return;
         }
         response.listeLogin = result[0];
+
+        //Utilisation de la variable de sassion request.session.connecte pour vérifier si l'utilisateur est connecté
         if(result[0] !== null){
           console.log("Vous êtes connecté")
           request.session.connecte = true;
         }
         else{
-        request.session.connecte = false;
-      }
+          request.session.connecte = false;
+        }
 
         response.mdp = mdp;
 
