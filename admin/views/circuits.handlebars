@@ -11,4 +11,13 @@
   <th>Actions</th>
 </tr>
 
+{{#each listeCircuit}}
+  <tr>
+    <td>{{this.CIRNOM}}</td>
+    <td>{{this.CIRLONGUEUR}}</td>
+    <td>{{this.CIRNBSPECTATEURS}}</td>
+    <td> <a href="">Modifier</a> <a href="">Supprimer</a>
+  <tr>
+{{/each}}
+
 </table>
