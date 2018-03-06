@@ -21,15 +21,18 @@
 </table>
 <ul>
 {{#each informationEcuries}}
-	<li>{{this.ECUNOM}}</li>
-	<li>{{this.ECUNOMDIR}}</li>
-	<li>{{this.ECUADRSIEGE}}</li>
-	<li>{{this.PAYNOM}}</li>
+	<img src="../image/ecurie/{{this.ECUADRESSEIMAGE}}" alt="ecurie"/>
+	<li><strong> Nom : </strong>{{this.ECUNOM}}</li>
+	<li><strong> Directeur : </strong>{{this.ECUNOMDIR}}</li>
+	<li><strong> Adresse de siège : </strong>{{this.ECUADRSIEGE}}</li>
+	<li><strong> Pays : </strong>{{this.PAYNOM}}</li>
 
 {{/each}}
 </ul>
 
 {{#if pilotesEcurieDansUnGp}}
+
+	<Strong> Pilotes </strong>
 	<ul>
 	{{#each pilotesEcurieDansUnGp}}
 		<li>{{this.PILPRENOM}} {{this.PILNOM}} </li>
