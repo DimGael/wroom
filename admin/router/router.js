@@ -1,6 +1,7 @@
 
 let ConnexionController = require('./../controllers/ConnexionController');
 let PiloteController = require('./../controllers/PiloteController');
+let CircuitController = require('./../controllers/CircuitController');
 
 
 // Routes
@@ -12,6 +13,8 @@ module.exports = function(app){
     app.post('/connexion', ConnexionController.Connexion);
 
     app.get('/pilotes', PiloteController.IndexAdminPilote);
+
+    app.get('/circuits', CircuitController.GestionCircuits)
 
   //  app.get('/ajouterPilote', PiloteController.AjouterPilote);
     //app.post('/ajouterPilote/pilote', PiloteController.ValiderAjouterPilote);
