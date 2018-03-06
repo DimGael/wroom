@@ -19,9 +19,13 @@ module.exports.Connexion = function(request, response){
     let mdp = request.body.mdp;
     let login = request.body.login;
 
+    let mdpCrypte = crypto.createHash('sha1')
+        .update(mdp)
+        .digest('hex');
+
     async.parallel([
       function(callback){
-        model.verifierConnexion(login, mdp, function(err, result) {callback(null, result)})
+        model.verifierConnexion(login, mdpCrypte, function(err, result) {callback(null, result)})
       }
     ], function (err, result) {
         if (err) {
@@ -29,6 +33,8 @@ module.exports.Connexion = function(request, response){
             return;
         }
         response.listeLogin = result[0];
+
+        response.mdp = mdp;
 
         response.render('connexionEnCours', response);
     })
