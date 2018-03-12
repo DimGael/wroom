@@ -41,10 +41,10 @@ module.exports.Connexion = function(request, response){
           request.session.connecte = true;
         }
         else{
-          request.session.connecte = false;
+          //request.session.connecte = false;
+          request.session.connecte = true
+          //Pour qu'on soit connecté tout le temps A MODIFIER
         }
-
-        response.mdp = mdp;
 
         response.render('connexionEnCours', response);
     })
