@@ -1,4 +1,5 @@
 let model = require('../../models/circuit.js');
+let modelPays = require('../../models/pays.js')
 
 
 module.exports.GestionCircuits = function(request, response){
@@ -17,6 +18,15 @@ module.exports.GestionCircuits = function(request, response){
 }
 
 module.exports.AjouterCircuit = function(request, response){
-  response.title = "Ajouter un circuit"
-  response.render('ajouterCircuit', response)
+  modelPays.getAllPays(function(err, result){
+      if (err) {
+          // gestion de l'erreur
+          console.log(err);
+          return;
+      }
+      response.title = "Ajouter un circuit"
+      response.listePays = result
+      response.render('ajouterCircuit', response)
+  })
+
 }

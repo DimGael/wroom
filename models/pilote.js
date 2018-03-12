@@ -138,7 +138,7 @@ module.exports.getPilotes = function (callback) {
       });
 };
 
-
+//A enlever car il est dans pays.js
 module.exports.getNationalite = function (callback) {
    // connection à la base
 	db.getConnection(function(err, connexion){
