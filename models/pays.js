@@ -20,7 +20,7 @@ module.exports.getAllPays = function (callback) {
    // connection à la base
 	db.getConnection(function(err, connexion){
         if(!err){
-						let sql ="SELECT PAYNOM FROM pays ORDER BY PAYNAT";
+						let sql ="SELECT PAYNUM, PAYNOM FROM pays ORDER BY PAYNAT";
 						//Il peut être important de loger la requête SQL dans la console
 						//console.log ("getNationalite : "+sql);
             connexion.query(sql, callback);

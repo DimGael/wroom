@@ -1,22 +1,22 @@
 <h1>Ajouter Un Circuit</h1>
 
 <form method="post" action="/circuits/ajoutCircuit">
-  Nom : <input type="text" autofocus="true"  name = "nom"/> <br/><br/>
+  Nom : <input type="text" required="true" autofocus="true"  name = "nom"/> <br/><br/>
 
-  Longueur : <input type="number" name="longueur"/> m <br/><br/>
+  Longueur : <input required="true" type="number" name="longueur"/> m <br/><br/>
 
   Pays :
   <select name="pays">
     {{#each listePays}}
-      <option value="{{this.PAYNOM}}">{{this.PAYNOM}}</option>
+      <option value="{{this.PAYNUM}}">{{this.PAYNOM}}</option>
     {{/each}}
   </select> <br/><br/>
 
   Image : <input accept="image/*" type="file" name="image"/> <br/><br/>
 
-  Nombre de spectateurs : <input type="number" name="nb_spectateurs"/> personnes </br><br/>
+  Nombre de spectateurs : <input required="true" type="number" name="nb_spectateurs"/> personnes </br><br/>
 
-  Description : <textarea rows="2" cols="60" placeholder="Insérez votre description ici ..."></textarea>
+  Description : <textarea rows="2" cols="60" name="description" placeholder="Insérez votre description ici ..."></textarea>
   <br/><br/>
 
   <input type="submit" value="Ajouter"/>

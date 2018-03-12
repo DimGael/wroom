@@ -44,3 +44,19 @@ module.exports.getAllCircuits = function(callback){
 				}
 		 });
 }
+
+module.exports.ajouterCircuit = function(circuit, callback){
+	db.getConnection(function(err, connexion){
+
+	 			 if(!err){
+					 console.log(circuit.nom)
+	 					 let sql ="INSERT INTO circuit (paynum, cirnom, cirlongueur, cirnbspectateurs, ciradresseimage, cirtext) VALUES (";
+						 sql+=""+circuit.pays+", '"+circuit.nom+"', "+circuit.longueur+", "+circuit.nb_spectateurs+", '"+circuit.image+"', '	"+circuit.description+"')";
+	 			 //Il peut être important de loger la requête SQL dans la console
+	 					 console.log ("ajouterCircuit : "+sql);
+	 					 connexion.query(sql, callback);
+	 					 // la connexion retourne dans le pool
+	 					 connexion.release();
+	 				}
+	})
+}
