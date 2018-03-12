@@ -28,5 +28,8 @@ module.exports.AjouterCircuit = function(request, response){
       response.listePays = result
       response.render('ajouterCircuit', response)
   })
+}
 
+module.exports.AjoutCircuit = function(request, response){
+  
 }

@@ -18,6 +18,7 @@ module.exports = function(app){
 
     app.get('/circuits', CircuitController.GestionCircuits)
     app.get('/circuits/ajouterCircuit', CircuitController.AjouterCircuit)
+    app.post('/circuits/ajoutCircuit', CircuitController.AjoutCircuit)
 
   //  app.get('/ajouterPilote', PiloteController.AjouterPilote);
     //app.post('/ajouterPilote/pilote', PiloteController.ValiderAjouterPilote);
