@@ -12,8 +12,11 @@ module.exports.GestionCircuits = function(request, response){
           return;
       }
         response.listeCircuit = result
+        response.render('circuits', response)
     })
+}
 
-
-  response.render('circuits', response)
+module.exports.AjouterCircuit = function(request, response){
+  response.title = "Ajouter un circuit"
+  response.render('ajouterCircuit', response)
 }

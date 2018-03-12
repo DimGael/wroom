@@ -1,7 +1,7 @@
 <img src="/image/cat_circuit.png"/>
 <h1>Gestion des circuits</h1>
 
-<a href="/ajouterCircuit"> <img src="/image/act_add.png "/> Ajouter un circuit</a>
+<a href="/circuit/ajouterCircuit"> <img src="/image/act_add.png "/> Ajouter un circuit</a>
 
 <table>
 <tr>
@@ -16,8 +16,11 @@
     <td>{{this.CIRNOM}}</td>
     <td>{{this.CIRLONGUEUR}}</td>
     <td>{{this.CIRNBSPECTATEURS}}</td>
-    <td> <a href="">Modifier</a> <a href="">Supprimer</a>
-  <tr>
+    <td> <a href="">
+      <img src="/image/act_edit.png"/>Modifier</a>
+      <a href="">
+        <img src="/image/act_delete.png"/>Supprimer</a>
+  </tr>
 {{/each}}
 
 </table>
