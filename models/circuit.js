@@ -60,3 +60,18 @@ module.exports.ajouterCircuit = function(circuit, callback){
 	 				}
 	})
 }
+
+module.exports.supprimerCircuit = function(nomCircuit, callback){
+	db.getConnection(function(err, connexion){
+
+	 			 if(!err){
+	 					 let sql ="DELETE FROM circuit WHERE cirnom = '"+nomCircuit+"'";
+
+						//Il peut être important de loger la requête SQL dans la console
+	 					 console.log ("supprimerCircuit : "+sql);
+	 					 connexion.query(sql, callback);
+	 					 // la connexion retourne dans le pool
+	 					 connexion.release();
+	 				}
+	})
+}

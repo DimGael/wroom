@@ -51,7 +51,15 @@ module.exports.ModifierCircuit = function(request, response){
 
 module.exports.SupprimerCircuit = function(request, response){
   response.title = "Supression d'un circuit"
-  let circuit_num = request.params.num;
+  let circuit_nom = request.params.nom;
 
-  response.render('insertionOK', response);
+  model.supprimerCircuit(circuit_nom, function(err, result){
+      if (err) {
+          // gestion de l'erreur
+          console.log(err);
+          return;
+      }
+      response.nomPage = "Suppression du circuit "+circuit_nom+" finie !"
+      response.render('insertionOK', response);
+  })
 }
