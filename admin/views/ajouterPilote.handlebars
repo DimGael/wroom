@@ -1,35 +1,36 @@
 <h1>Ajouter un pilote</h1>
 
 
-<form method="post" action='/ajouterPilote/pilote'>
-  Prénom : <input type="text" id="prenom" name="prenom"> </br>
+<form method="post" action='/pilotes/ajouterPilote/insertionOK'>
+  Prénom : <input type="text" id="prenom" name="PILPRENOM"> </br>
 
-  Nom : <input type="text" id="nom" name="nom"> </br>
+  Nom : <input type="text" id="nom" name="PILNOM"> </br>
 
   Date de naissance :
-  <input type="number" id="jourNaissance" name="jourNaissance" size="2"> /
-   <input type="number" id="moisNaissance" name="moisNaissance" size="2"> /
-   <input type="number" id="anneeNaissance" name="anneeNaissance" size="4"> </br>
+  <input type="date" id="dateNaissance" name="PILDATENAIS" size="6">
+  </br>
    </br>
-   Nationalité : <select id="nationalite">
+   Nationalité : <select id="nationalite" name="PAYNUM">
      {{#each nationalitePilote}}
-     <option value="{{this.PAYNAT}}">{{this.PAYNAT}}</option>
+     <option value="{{this.PAYNUM}}">{{this.PAYNAT}}</option>
      {{/each}}
    </select>
   </br>
-   Ecurie : <select id="ecurie">
+   Ecurie : <select id="ecurie" name="ECUNUM">
      {{#each ecuriePilote}}
-     <option value="{{this.ECUNOM}}">{{this.ECUNOM}}</option>
+     <option value="{{this.ECUNUM}}">{{this.ECUNOM}}</option>
      {{/each}}
    </select>
   </br>
 
-   Points : <input type="number" name="points"> pts </br>
+   Points : <input type="number" name="PILPOINTS"> pts </br>
 
-   Taille : <input type="number" name="taille"> pts </br>
+   Poids : <input type="number" name="PILPOIDS"> kg </br>
+
+   Taille : <input type="number" name="PILTAILLE"> cm </br>
 
    Description :
-   <textarea rows="1" cols="10" name="description" id="description">
+   <textarea rows="1" cols="10" name="PILTEXTE" id="description">
    </textarea></br></br>
 
    <input type="submit" value="AJOUTER">

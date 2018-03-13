@@ -15,6 +15,7 @@ module.exports = function(app){
     app.get('/pilotes', PiloteController.IndexAdminPilote);
 
     app.get('/pilotes/ajouterPilote', PiloteController.AjouterPilote);
+    app.post('/pilotes/ajouterPilote/insertionOK', PiloteController.InsertionPilote)
 
     app.get('/circuits', CircuitController.GestionCircuits)
     app.get('/circuits/ajouterCircuit', CircuitController.AjouterCircuit)

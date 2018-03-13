@@ -24,8 +24,6 @@ module.exports.AjouterPilote = function(request, response){
 
     response.title = 'ajouter des pilotes';
 
-
-
     async.parallel([
       function(callback){
         model.getNationalite( function (err, result) {callback(null,result)});
@@ -34,6 +32,7 @@ module.exports.AjouterPilote = function(request, response){
       function(callback){
         model.getEcurie(function (err, result) {callback(null,result)});
       }
+
     ],
 
       function(err,result){
@@ -51,5 +50,18 @@ module.exports.AjouterPilote = function(request, response){
       }
     );
 
+}
+
+module.exports.InsertionPilote = function(request, response){
+
+  model.ajouterPilote(request.body,function (err, result) {
+    if (err) {
+        // gestion de l'erreur
+        console.log(err);
+        return;
+    }
+    response.title = 'insertion effectuée';
+    response.render('insertionOK', response);
+  });
 
 }
