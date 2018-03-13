@@ -44,8 +44,14 @@ module.exports.AjoutCircuit = function(request, response){
 
 module.exports.ModifierCircuit = function(request, response){
   response.title = "Modification d'un circuit"
+  let circuit_num = request.params.num;
+
+  response.render('ajouterCircuit', response)
 }
 
 module.exports.SupprimerCircuit = function(request, response){
   response.title = "Supression d'un circuit"
+  let circuit_num = request.params.num;
+
+  response.render('insertionOK', response);
 }
