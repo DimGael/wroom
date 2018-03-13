@@ -16,12 +16,15 @@ module.exports = function(app){
 
     app.get('/pilotes/ajouterPilote', PiloteController.AjouterPilote);
     app.post('/pilotes/ajouterPilote/insertionOK', PiloteController.InsertionPilote);
-    app.get('/pilotes/modifierPilote', PiloteController.ModifierPilote);
-    app.post('/pilotes/modifierPilote/insertionOK', PiloteController.ModificationPilote);
+    //app.get('/pilotes/modifierPilote', PiloteController.ModifierPilote);
+    //app.post('/pilotes/modifierPilote/insertionOK', PiloteController.ModificationPilote);
 
     app.get('/circuits', CircuitController.GestionCircuits);
     app.get('/circuits/ajouterCircuit', CircuitController.AjouterCircuit);
     app.post('/circuits/ajoutCircuit', CircuitController.AjoutCircuit);
+    app.get('/circuits/modifierCircuit/:num', CircuitController.ModifierCircuit);
+    app.get('/circuits/supprimerCircuit/:num', CircuitController.SupprimerCircuit);
+
 
   //  app.get('/ajouterPilote', PiloteController.AjouterPilote);
     //app.post('/ajouterPilote/pilote', PiloteController.ValiderAjouterPilote);

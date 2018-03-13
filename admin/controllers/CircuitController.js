@@ -31,7 +31,6 @@ module.exports.AjouterCircuit = function(request, response){
 }
 
 module.exports.AjoutCircuit = function(request, response){
-  console.log(request.body)
   model.ajouterCircuit(request.body, function(err, result){
     if (err) {
         // gestion de l'erreur
@@ -41,4 +40,12 @@ module.exports.AjoutCircuit = function(request, response){
     response.title = "Ajout en cours"
     response.render('ajoutCircuit', response)
   })
+}
+
+module.exports.ModifierCircuit = function(request, response){
+  response.title = "Modification d'un circuit"
+}
+
+module.exports.SupprimerCircuit = function(request, response){
+  response.title = "Supression d'un circuit"
 }
