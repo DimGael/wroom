@@ -46,6 +46,7 @@ module.exports.AjoutCircuit = function(request, response){
 module.exports.ModifierCircuit = function(request, response){
   response.title = "Modification d'un circuit"
   let circuit_nom = request.params.nom;
+  response.nomCircuit = circuit_nom
 
   async.parallel(
     [
@@ -64,9 +65,9 @@ module.exports.ModifierCircuit = function(request, response){
       }
       let listePays = result[1][0];
       response.listePays = new Array();
+
       response.circuit = result[0][0][0];
       let pays = response.circuit.PAYNOM;
-      response.nomCircuit = circuit_nom
 
       //faire en sorte que le pays du circuit soit enlevé
       for(let i = 0; i<listePays.length; i++){
@@ -74,10 +75,13 @@ module.exports.ModifierCircuit = function(request, response){
             response.listePays.push(listePays[i])
         }
       }
-
       response.render('modifierCircuit', response)
     }
   )
+}
+
+module.exports.ModificationCircuit = function(request, response){
+  response.title = "Modification d'un circuit";
 }
 
 module.exports.SupprimerCircuit = function(request, response){
