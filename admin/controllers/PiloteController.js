@@ -103,16 +103,16 @@ module.exports.ModifierPilote = function(request, response){
 }
 
 module.exports.ModificationPilote = function(request, response){
-
-  model.modifierPilote(request.body,function (err, result) {
+  let num = request.params.num;
+  model.modifierPilote(request.body,num,function (err, result) {
     if (err) {
-        // gestion de l'erreur
-        console.log(err);
-        return;
+      // gestion de l'erreur
+      console.log(err);
+      return;
     }
     response.title = 'insertion effectuée';
-    response.nomPage = " Modification du pilote "+nom+" éffectuée"
-    response.render('insertionOK', response);
+    response.nomPage = " Modification du pilote éffectuée"
+    response.render("modificationOK", response);
   });
 
 }

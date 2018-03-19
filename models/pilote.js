@@ -42,7 +42,7 @@ module.exports.getInformationPilotes = function(nom, callback){
 	db.getConnection(function(err, connexion){
         if(!err){
 
-						let sql ="SELECT p.PILNOM, p.PILPRENOM, p.PILPOIDS, p.PILTAILLE, p.PILDATENAIS, p.PILTEXTE, pa.PAYNOM FROM pilote p "
+						let sql ="SELECT p.PILNUM, p.PILNOM, p.PILPRENOM, p.PILPOIDS, p.PILTAILLE, p.PILDATENAIS, p.PILTEXTE, pa.PAYNOM FROM pilote p "
 						sql = sql+"INNER JOIN pays pa ON p.PAYNUM=pa.PAYNUM "
 						sql = sql+"WHERE p.PILNOM='"+nom+"'";
 
@@ -210,14 +210,15 @@ module.exports.piloteAModifier = function(nom, callback){
       });
 }
 
-module.exports.modifierPilote = function (pilote,callback) {
+module.exports.modifierPilote = function (pilote,id,callback) {
    // connection à la base
 	db.getConnection(function(err, connexion){
         if(!err){
-						let sql ="update pilote set PILNOM='"+pilote.PILNOM+"',PILPRENOM='"+pilote.PILPRENOM+"',PILDATENAIS='"+pilote.PILDATENAIS+"',PILPOIDS="+pilote.PILPOIDS+",PILTAILLE="+pilote.PILTAILLE+",PILTEXTE='"+pilote.PILTEXTE+"',PILPOINTS="+pilote.PILPOINTS+",ECUNUM="+pilote.ECUNUM+",PAYNUM="+pilote.PAYNUM;
-						sql = sql + " WHERE PILNUM='"+pilote.PILNUM+"'";
+						let sql ="update pilote set PILNOM='"+pilote.PILNOM+"',PILPRENOM='"+pilote.PILPRENOM+"',PILDATENAIS='"+pilote.PILDATENAIS+"',PILPOIDS="+pilote.PILPOIDS+",PILTAILLE="+pilote.PILTAILLE+',PILTEXTE="'+pilote.PILTEXTE+'"'+",PILPOINTS="+pilote.PILPOINTS+",ECUNUM="+pilote.ECUNUM+",PAYNUM="+pilote.PAYNUM;
+						sql = sql + " WHERE PILNUM="+id;
 						//Il peut être important de loger la requête SQL dans la console
 						console.log ("modifierPilote : "+sql);
+
             connexion.query(sql, callback);
 
             // la connexion retourne dans le pool

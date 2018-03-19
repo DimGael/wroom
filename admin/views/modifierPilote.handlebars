@@ -1,9 +1,9 @@
 <h1>Modifier un pilote</h1>
 
+{{#each infoPilote}}
+<form method="post" action="/pilotes/modifierPilote/modificationOK/{{this.PILNUM}}">
 
-<form method="post" action='/pilotes/modifierPilote/insertionOK'>
-  {{#each infoPilote}}
-  Prénom : <input type="text" id="prenom" name="PILPRENOM" value="{{this.PILPRENOM}}">{{}} </br>
+  Prénom : <input type="text" id="prenom" name="PILPRENOM" value="{{this.PILPRENOM}}"></br>
 
   Nom : <input type="text" id="nom" name="PILNOM" value="{{this.PILNOM}}"> </br>
 
@@ -32,7 +32,7 @@
    Taille : <input type="number" name="PILTAILLE" value="{{this.PILTAILLE}}"> cm </br>
 
    Description :
-   <textarea rows="1" cols="10" name="PILTEXTE" id="description" value="{{this.PILTEXTE}}">
+   <textarea rows="1" cols="10" name="PILTEXTE" id="description">{{this.PILTEXTE}}
    </textarea></br></br>
    {{/each}}
    <input type="submit" value="AJOUTER">
