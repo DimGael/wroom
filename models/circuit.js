@@ -85,7 +85,7 @@ module.exports.modifierCircuit = function(circuit, cirnum, callback){
 				sql+="CIRNOM = '"+circuit.CIRNOM+"'"
 				sql+=",\n CIRLONGUEUR = "+circuit.CIRLONGUEUR
 				sql+=",\n CIRNBSPECTATEURS = "+circuit.CIRNBSPECTATEURS
-				sql+=',\n CIRTEXT = "'+circuit.CIRTEXT+'"'
+				sql+=',\n CIRTEXT = `'+circuit.CIRTEXT+'`'
 
 				sql+=" WHERE CIRNUM = "+cirnum
 				 //Il peut être important de loger la requête SQL dans la console
