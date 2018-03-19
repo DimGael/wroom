@@ -1,0 +1,39 @@
+<h1>Modifier un pilote</h1>
+
+
+<form method="post" action='/pilotes/modifierPilote/insertionOK'>
+  {{#each infoPilote}}
+  Prénom : <input type="text" id="prenom" name="PILPRENOM" value="{{this.PILPRENOM}}">{{}} </br>
+
+  Nom : <input type="text" id="nom" name="PILNOM" value="{{this.PILNOM}}"> </br>
+
+  Date de naissance :
+  <input type="date" id="dateNaissance" name="PILDATENAIS" size="6" value="{{this.PILDATENAIS}}">
+  </br>
+  </br>
+  {{/each}}
+   Nationalité : <select id="nationalite" name="PAYNUM">
+     {{#each nationalitePilote}}
+     <option value="{{this.PAYNUM}}">{{this.PAYNAT}}</option>
+     {{/each}}
+   </select>
+  </br>
+   Ecurie : <select id="ecurie" name="ECUNUM">
+     {{#each ecuriePilote}}
+     <option value="{{this.ECUNUM}}">{{this.ECUNOM}}</option>
+     {{/each}}
+   </select>
+  </br>
+  {{#each infoPilote}}
+   Points : <input type="number" name="PILPOINTS" value="{{this.PILPOINTS}}"> pts </br>
+
+   Poids : <input type="number" name="PILPOIDS" value="{{this.PILPOIDS}}"> kg </br>
+
+   Taille : <input type="number" name="PILTAILLE" value="{{this.PILTAILLE}}"> cm </br>
+
+   Description :
+   <textarea rows="1" cols="10" name="PILTEXTE" id="description" value="{{this.PILTEXTE}}">
+   </textarea></br></br>
+   {{/each}}
+   <input type="submit" value="AJOUTER">
+</form>

@@ -187,3 +187,42 @@ module.exports.ajouterPilote = function (pilote,callback) {
          }
       });
 };
+
+
+module.exports.piloteAModifier = function(nom, callback){
+
+	db.getConnection(function(err, connexion){
+        if(!err){
+
+						let sql ="SELECT p.PILNUM,p.PILNOM, p.PILPRENOM, p.PILPOIDS, p.PILTAILLE, p.PILDATENAIS, p.PILTEXTE,p.PILPOINTS, pa.PAYNAT,e.ECUNOM FROM pilote p "
+						sql = sql+" INNER JOIN ECURIE e ON e.ECUNUM=p.ECUNUM INNER JOIN pays pa ON pa.PAYNUM=e.PAYNUM "
+						sql = sql+"WHERE p.PILNOM='"+nom+"'";
+
+						//Il peut être important de loger la requête SQL dans la console
+
+            connexion.query(sql, callback);
+
+            // la connexion retourne dans le pool
+            connexion.release();
+
+						console.log ("piloteAModifier : "+sql);
+         }
+      });
+}
+
+module.exports.modifierPilote = function (pilote,callback) {
+   // connection à la base
+	db.getConnection(function(err, connexion){
+        if(!err){
+						let sql ="update pilote set PILNOM='"+pilote.PILNOM+"',PILPRENOM='"+pilote.PILPRENOM+"',PILDATENAIS='"+pilote.PILDATENAIS+"',PILPOIDS="+pilote.PILPOIDS+",PILTAILLE="+pilote.PILTAILLE+",PILTEXTE='"+pilote.PILTEXTE+"',PILPOINTS="+pilote.PILPOINTS+",ECUNUM="+pilote.ECUNUM+",PAYNUM="+pilote.PAYNUM;
+						sql = sql + " WHERE PILNUM='"+pilote.PILNUM+"'";
+						//Il peut être important de loger la requête SQL dans la console
+						console.log ("modifierPilote : "+sql);
+            connexion.query(sql, callback);
+
+            // la connexion retourne dans le pool
+            connexion.release();
+
+         }
+      });
+};

@@ -16,7 +16,7 @@ module.exports = function(app){
 
     app.get('/pilotes/ajouterPilote', PiloteController.AjouterPilote);
     app.post('/pilotes/ajouterPilote/insertionOK', PiloteController.InsertionPilote);
-    //app.get('/pilotes/modifierPilote', PiloteController.ModifierPilote);
+    app.get('/pilotes/modifierPilote/:nom', PiloteController.ModifierPilote);
     //app.post('/pilotes/modifierPilote/insertionOK', PiloteController.ModificationPilote);
 
     app.get('/circuits', CircuitController.GestionCircuits);
