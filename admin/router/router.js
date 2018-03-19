@@ -17,13 +17,13 @@ module.exports = function(app){
     app.get('/pilotes/ajouterPilote', PiloteController.AjouterPilote);
     app.post('/pilotes/ajouterPilote/insertionOK', PiloteController.InsertionPilote);
     app.get('/pilotes/modifierPilote/:nom', PiloteController.ModifierPilote);
-    //app.post('/pilotes/modifierPilote/insertionOK', PiloteController.ModificationPilote);
+    app.post('/pilotes/modifierPilote/modificationOK/:num', PiloteController.ModificationPilote);
 
     app.get('/circuits', CircuitController.GestionCircuits);
     app.get('/circuits/ajouterCircuit', CircuitController.AjouterCircuit);
     app.post('/circuits/ajoutCircuit', CircuitController.AjoutCircuit);
     app.get('/circuits/modifierCircuit/:nom', CircuitController.ModifierCircuit);
-    app.post('/circuits/modificationCircuit', CircuitController.ModificationCircuit)
+    app.post('/circuits/modificationCircuit/:num', CircuitController.ModificationCircuit);
     app.get('/circuits/supprimerCircuit/:nom', CircuitController.SupprimerCircuit);
 
 
