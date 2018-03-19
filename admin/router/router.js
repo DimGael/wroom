@@ -23,6 +23,7 @@ module.exports = function(app){
     app.get('/circuits/ajouterCircuit', CircuitController.AjouterCircuit);
     app.post('/circuits/ajoutCircuit', CircuitController.AjoutCircuit);
     app.get('/circuits/modifierCircuit/:nom', CircuitController.ModifierCircuit);
+    app.post('/circuits/modificationCircuit', CircuitController.ModificationCircuit)
     app.get('/circuits/supprimerCircuit/:nom', CircuitController.SupprimerCircuit);
 
 
