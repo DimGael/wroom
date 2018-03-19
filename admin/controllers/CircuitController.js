@@ -1,5 +1,6 @@
 let model = require('../../models/circuit.js');
-let modelPays = require('../../models/pays.js')
+let modelPays = require('../../models/pays.js');
+let async=require('async');
 
 
 module.exports.GestionCircuits = function(request, response){
@@ -44,9 +45,39 @@ module.exports.AjoutCircuit = function(request, response){
 
 module.exports.ModifierCircuit = function(request, response){
   response.title = "Modification d'un circuit"
-  let circuit_num = request.params.num;
+  let circuit_nom = request.params.nom;
 
-  response.render('ajouterCircuit', response)
+  async.parallel(
+    [
+      function(callback){
+        model.getInformationCircuits(circuit_nom, callback)
+      },
+      function(callback){
+        modelPays.getAllPays(callback)
+      }
+    ],
+
+    function(err, result){
+      if(err){
+        console.log(err);
+        return
+      }
+      let listePays = result[1][0];
+      response.listePays = new Array();
+      response.circuit = result[0][0][0];
+      let pays = response.circuit.PAYNOM;
+      response.nomCircuit = circuit_nom
+
+      //faire en sorte que le pays du circuit soit enlevé
+      for(let i = 0; i<listePays.length; i++){
+        if(listePays[i] !== response.circuit.PAYNOM){
+            response.listePays.push(listePays[i])
+        }
+      }
+
+      response.render('modifierCircuit', response)
+    }
+  )
 }
 
 module.exports.SupprimerCircuit = function(request, response){

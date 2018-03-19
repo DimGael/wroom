@@ -1,0 +1,30 @@
+<h1>Modification du circuit {{nomCircuit}}</h1>
+
+<form method="post" action="/circuits/modifierCircuit">
+  Nom : <input type="text" required="true" autofocus="true"  name = "nom"
+  value = "{{circuit.CIRNOM}}"/> <br/><br/>
+
+  Longueur : <input required="true" type="number" name="longueur" value="{{circuit.CIRLONGUEUR}}"/> m <br/><br/>
+
+  Pays :
+  <select name="pays">
+      <option value="" selected>{{circuit.PAYNOM}}</option>
+    {{#each listePays}}
+      <option value="{{this.PAYNUM}}">{{this.PAYNOM}}</option>
+    {{/each}}
+  </select> <br/><br/>
+
+  Image : <input accept="image/*" type="file" name="image"
+  {{#if circuit.CIRADRESSEIMAGE}}
+    value="{{circuit.CIRADRESSEIMAGE}}"
+  {{/if}}/> <br/><br/>
+
+  Nombre de spectateurs : <input required="true" type="number" name="nb_spectateurs" value="{{circuit.CIRNBSPECTATEURS}}"/> personnes </br><br/>
+
+  Description : <textarea rows="2" cols="60" name="description" placeholder="Insérez votre description ici ...">
+    {{circuit.CIRTEXT}}
+  </textarea>
+  <br/><br/>
+
+  <input type="submit" value="Modifier"/>
+</form>
