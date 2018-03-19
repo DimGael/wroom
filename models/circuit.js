@@ -17,12 +17,12 @@ module.exports.getListeCircuits = function (callback) {
 };
 
 
-module.exports.getInformationCircuits = function(circuit,callback) {
+module.exports.getInformationCircuits = function(nomCircuit,callback) {
    // connection à la base
 	db.getConnection(function(err, connexion){
         if(!err){
-						let sql ="SELECT c.CIRADRESSEIMAGE, c.CIRLONGUEUR, c.CIRNOM, c.CIRNBSPECTATEURS, c.CIRTEXT, p.PAYNOM FROM circuit c ";
-            sql=sql+"INNER JOIN PAYS p ON p.PAYNUM=c.PAYNUM WHERE c.CIRNOM ='"+circuit+"'";
+						let sql ="SELECT c.CIRNUM, c.CIRADRESSEIMAGE, c.CIRLONGUEUR, c.CIRNOM, c.CIRNBSPECTATEURS, c.CIRTEXT, c.PAYNUM, p.PAYNOM FROM circuit c ";
+            sql=sql+"INNER JOIN PAYS p ON p.PAYNUM=c.PAYNUM WHERE c.CIRNOM ='"+nomCircuit+"'";
 						//Il peut être important de loger la requête SQL dans la console
 						console.log ("getListeCircuits : "+sql);
             connexion.query(sql, callback);
@@ -74,4 +74,25 @@ module.exports.supprimerCircuit = function(nomCircuit, callback){
 	 					 connexion.release();
 	 				}
 	})
+}
+
+module.exports.modifierCircuit = function(circuit, cirnum, callback){
+		db.getConnection(function(err, connexion){
+			if(!err){
+				console.log("Numero fourni par le CONTROLLER : "+cirnum)
+				let sql ="UPDATE circuit "
+				sql+=" SET PAYNUM = "+circuit.PAYNUM+",\n "
+				sql+="CIRNOM = '"+circuit.CIRNOM+"'"
+				sql+=",\n CIRLONGUEUR = "+circuit.CIRLONGUEUR
+				sql+=",\n CIRNBSPECTATEURS = "+circuit.CIRNBSPECTATEURS
+				sql+=',\n CIRTEXT = "'+circuit.CIRTEXT+'"'
+
+				sql+=" WHERE CIRNUM = "+cirnum
+				 //Il peut être important de loger la requête SQL dans la console
+				console.log ("Modifier Circuit : "+sql);
+				connexion.query(sql, callback);
+				// la connexion retourne dans le pool
+				connexion.release();
+			}
+		})
 }

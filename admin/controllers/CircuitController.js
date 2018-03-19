@@ -82,6 +82,16 @@ module.exports.ModifierCircuit = function(request, response){
 
 module.exports.ModificationCircuit = function(request, response){
   response.title = "Modification d'un circuit";
+
+    model.modifierCircuit(request.body, request.params.id, function(err, result){
+      if (err) {
+          // gestion de l'erreur
+          console.log(err);
+          return;
+      }
+      response.nomPage = "Modification réussie !"
+      response.render('insertionOK', response)
+    })
 }
 
 module.exports.SupprimerCircuit = function(request, response){
