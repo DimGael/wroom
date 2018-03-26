@@ -1,5 +1,6 @@
 let model = require('../../models/circuit.js');
 let modelPays = require('../../models/pays.js');
+let modelGrandPrix = require('../../models/grandPrix.js');
 let async=require('async');
 
 
@@ -95,16 +96,32 @@ module.exports.ModificationCircuit = function(request, response){
 }
 
 module.exports.SupprimerCircuit = function(request, response){
-  response.title = "Supression d'un circuit"
-  let circuit_nom = request.params.nom;
+  response.title = "Supression réussie"
+  let circuit_num = request.params.id;
 
-  model.supprimerCircuit(circuit_nom, function(err, result){
-      if (err) {
-          // gestion de l'erreur
-          console.log(err);
-          return;
-      }
-      response.nomPage = "Suppression du circuit "+circuit_nom+" finie !"
-      response.render('insertionOK', response);
+  model.getGrandPrix(circuit_num, function(err, result){
+        if (err) {
+            // gestion de l'erreur
+            console.log(err);
+            return;
+        }
+
+        //result contient un tableau de tous les gpnum associés
+        //result[0].gpnum, result[1].gpnum ...
+
+        result.forEach(function(element){
+          let gpnum = element.gpnum;
+
+          modelGrandPrix.supprimerGrandPrix(gpnum, function(err, result)){
+            if (err) {
+                // gestion de l'erreur
+                console.log(err);
+                return;
+            }
+          }
+        })
+
+        response.nomPage = "Suppression du circuit finie !"
+        response.render('insertionOK', response);
   })
 }

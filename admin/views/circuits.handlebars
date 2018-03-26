@@ -18,9 +18,13 @@
     <td>{{this.CIRNBSPECTATEURS}}</td>
     <td> <a href="/circuits/modifierCircuit/{{this.CIRNOM}}">
       <img src="/image/act_edit.png"/>Modifier</a>
-      <a href="/circuits/supprimerCircuit/{{this.CIRNOM}}">
+      <a href="/circuits/supprimerCircuit/{{this.CIRNUM}}">
         <img src="/image/act_delete.png"/>Supprimer</a>
   </tr>
 {{/each}}
 
 </table>
+
+<p class="attention">
+  ATTENTION ! La supression d'un circuit supprime les grands prix associés à ces derniers !
+</p>
