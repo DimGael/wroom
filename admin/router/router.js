@@ -24,7 +24,7 @@ module.exports = function(app){
     app.post('/circuits/ajoutCircuit', CircuitController.AjoutCircuit);
     app.get('/circuits/modifierCircuit/:nom', CircuitController.ModifierCircuit);
     app.post('/circuits/modificationCircuit/:id', CircuitController.ModificationCircuit);
-    app.get('/circuits/supprimerCircuit/:nom', CircuitController.SupprimerCircuit);
+    app.get('/circuits/supprimerCircuit/:id', CircuitController.SupprimerCircuit);
 
 
   //  app.get('/ajouterPilote', PiloteController.AjouterPilote);
