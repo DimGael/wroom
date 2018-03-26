@@ -1,0 +1,26 @@
+<center><img src="/image/cat_ecurie.png"/></center>
+<h1>Gestion des écuries</h1>
+
+<a href="/ecuries/ajouterEcurie"> <img src="/image/act_add.png "/> Ajouter une écurie</a>
+
+<table>
+<tr>
+  <th>Nom</th>
+  <th>Directeur</th>
+  <th>Points</th>
+  <th>Actions</th>
+</tr>
+
+{{#each listeEcurie}}
+  <tr>
+    <td>{{this.ecunom}}</td>
+    <td>{{this.ecunomdir}}</td>
+    <td>{{this.ecupoints}}</td>
+    <td> <a href="/ecuries/modifierEcurie/{{this.ECUNUM}}">
+      <img src="/image/act_edit.png"/>Modifier</a>
+      <a href="/ecuries/supprimerEcurie/{{this.ECUNUM}}">
+        <img src="/image/act_delete.png"/>Supprimer</a>
+  </tr>
+{{/each}}
+
+</table>

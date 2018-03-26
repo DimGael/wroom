@@ -1,0 +1,25 @@
+
+
+<h1>Ajouter une écurie</h1>
+
+
+<form method="post" action='/ecuries/ajouterEcurie/insertionOK'>
+  Nom : <input type="text" id="nom" name="ECUNOM" required='true'> </br>
+
+  Directeur : <input type="text" id="dir" name="ECUNOMDIR" required='true'> </br>
+
+  Adresse du siège : <input type="text" id="adrsiege" name="ECUADRSIEGE" required='true'> </br>
+
+  Points : <input type="number" name="ECUPOINTS" required='true'> pts </br>
+
+  Nationalité : <select id="nationalite" name="PAYNUM">
+  {{#each listeNationalite}}
+     <option value="{{this.PAYNUM}}">{{this.PAYNAT}}</option>
+  {{/each}}
+   </select>
+  </br>
+
+  Image : <input type="file" name="ECUADRESSEIMAGE" required='true'/></br></br>
+
+   <input type="submit" value="AJOUTER">
+</form>

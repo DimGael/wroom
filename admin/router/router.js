@@ -2,7 +2,7 @@
 let ConnexionController = require('./../controllers/ConnexionController');
 let PiloteController = require('./../controllers/PiloteController');
 let CircuitController = require('./../controllers/CircuitController');
-
+let EcurieController = require('./../controllers/EcurieController');
 
 // Routes
 module.exports = function(app){
@@ -24,7 +24,12 @@ module.exports = function(app){
     app.post('/circuits/ajoutCircuit', CircuitController.AjoutCircuit);
     app.get('/circuits/modifierCircuit/:nom', CircuitController.ModifierCircuit);
     app.post('/circuits/modificationCircuit/:id', CircuitController.ModificationCircuit);
-    app.get('/circuits/supprimerCircuit/:id', CircuitController.SupprimerCircuit);
+    app.get('/circuits/supprimerCircuit/:nom', CircuitController.SupprimerCircuit);
+
+    app.get('/ecuries',EcurieController.AfficherEcurie);
+    app.get('/ecuries/ajouterEcurie', EcurieController.AjouterEcurie);
+    app.post('/ecuries/ajouterEcurie/insertionOK', EcurieController.InsertionEcurie);
+
 
 
   //  app.get('/ajouterPilote', PiloteController.AjouterPilote);

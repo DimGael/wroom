@@ -18,10 +18,10 @@ module.exports.getListeEcurie = function (callback) {
         if(!err){
         	  // s'il n'y a pas d'erreur de connexion
         	  // execution de la requête SQL
-						let sql ="SELECT ecunum, payadrdrap, ecunom FROM ecurie e INNER JOIN pays p ";
+						let sql ="SELECT ecunum, payadrdrap, ecunom,ecunomdir,ecupoints FROM ecurie e INNER JOIN pays p ";
 						sql= sql + "ON p.paynum=e.paynum ORDER BY ecunom";
 						//Il peut être important de loger la requête SQL dans la console
-						//console.log ("getListeEcurie : "+sql);
+						console.log ("getListeEcurie : "+sql);
             connexion.query(sql, callback);
 
             // la connexion retourne dans le pool
@@ -88,6 +88,24 @@ module.exports.getPhotosVoituresEcuries = function (ecurie,callback) {
 
             // la connexion retourne dans le pool
             connexion.release();
+         }
+      });
+};
+
+
+module.exports.ajouterEcurie = function (ecurie,callback) {
+   // connection à la base
+	db.getConnection(function(err, connexion){
+        if(!err){
+						let sql ="INSERT INTO ecurie(PAYNUM,ECUNOM,ECUNOMDIR,ECUADRSIEGE,ECUPOINTS,ECUADRESSEIMAGE,FPNUM) ";
+						sql = sql + "VALUES("+ecurie.PAYNUM+", '"+ ecurie.ECUNOM+"', '"+ecurie.ECUNOMDIR+"', '"+ecurie.ECUADRSIEGE+"',"+ ecurie.ECUPOINTS +",'"+ ecurie.ECUADRESSEIMAGE+"', "+1+")"
+						//Il peut être important de loger la requête SQL dans la console
+						console.log ("ajouterEcurie : "+sql);
+            connexion.query(sql, callback);
+
+            // la connexion retourne dans le pool
+            connexion.release();
+
          }
       });
 };
