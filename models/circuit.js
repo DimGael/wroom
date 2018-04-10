@@ -37,7 +37,7 @@ module.exports.getAllCircuits = function(callback){
 			 if(!err){
 					 let sql ='SELECT CIRNUM, CIRLONGUEUR, CIRNOM, CIRNBSPECTATEURS FROM circuit';
 					 //Il peut être important de loger la requête SQL dans la console
-					 console.log ("getAllCircuits : "+sql);
+					 //console.log ("getAllCircuits : "+sql);
 					 connexion.query(sql, callback);
 					 // la connexion retourne dans le pool
 					 connexion.release();
@@ -61,29 +61,6 @@ module.exports.ajouterCircuit = function(circuit, callback){
 	})
 }
 
-module.exports.supprimerCircuit = function(idCircuit, callback){
-	db.getConnection(function(err, connexion){
-
-	 			 if(!err){
-	 					 let sqlGrandPrix = "DELETE FROM grandprix WHERE cirnum = "+idCircuit+";"
-						 let sqlCircuit ="DELETE FROM circuit WHERE cirnum = "+idCircuit+";"
-
-						//Il peut être important de loger la requête SQL dans la console
-	 					 console.log ("supprimerCircuit, étape 1 : "+sqlGrandPrix);
-
-	 					 connexion.query(sqlGrandPrix, function(err, row, fields){
-								 if (err) throw err;
-
-		 	 					 console.log ("supprimerCircuit, étape 2 : "+sqlCircuit);
-								 connexion.query(sqlCircuit, callback);
-			 					 // la connexion retourne dans le pool
-			 					 connexion.release();
-						 });
-	 				}
-	//Pour supprimer les trucs associés au circuit :DD
-	//DELETE from course where GPNUM IN (SELECT GPNUM FROM grandprix WHERE CIRNUM = 11)
-	})
-}
 
 module.exports.getGrandPrix = function(idCircuit, callback){
 	db.getConnection(function(err, connexion){
@@ -92,7 +69,7 @@ module.exports.getGrandPrix = function(idCircuit, callback){
 	 					 let sqlGrandPrix = "SELECT gpnum FROM grandprix WHERE cirnum = "+idCircuit+";"
 
 						//Il peut être important de loger la requête SQL dans la console
-	 					 console.log ("getGrandPrix: "+sqlGrandPrix);
+	 					 //console.log ("getGrandPrix: "+sqlGrandPrix);
 						 connexion.query(sqlGrandPrix, callback);
 	 					 // la connexion retourne dans le pool
 	 					 connexion.release();
@@ -103,20 +80,92 @@ module.exports.getGrandPrix = function(idCircuit, callback){
 module.exports.modifierCircuit = function(circuit, cirnum, callback){
 		db.getConnection(function(err, connexion){
 			if(!err){
-				console.log("Numero fourni par le CONTROLLER : "+cirnum)
+				//console.log("Numero fourni par le CONTROLLER : "+cirnum)
 				let sql ="UPDATE circuit "
 				sql+=" SET PAYNUM = "+circuit.PAYNUM+",\n "
 				sql+="CIRNOM = '"+circuit.CIRNOM+"'"
 				sql+=",\n CIRLONGUEUR = "+circuit.CIRLONGUEUR
 				sql+=",\n CIRNBSPECTATEURS = "+circuit.CIRNBSPECTATEURS
-				sql+=',\n CIRTEXT = `'+circuit.CIRTEXT+'`'
+				sql+=',\n CIRTEXT = "'+circuit.CIRTEXT+'"'
 
 				sql+=" WHERE CIRNUM = "+cirnum
 				 //Il peut être important de loger la requête SQL dans la console
-				console.log ("Modifier Circuit : "+sql);
+				//console.log ("Modifier Circuit : "+sql);
 				connexion.query(sql, callback);
 				// la connexion retourne dans le pool
 				connexion.release();
 			}
-		})
+		});
 }
+
+
+
+
+
+module.exports.supprimerCourse = function (id,callback) {
+	 // connection à la base
+	db.getConnection(function(err, connexion){
+				if(!err){
+						let sql ="DELETE FROM course WHERE GPNUM = (SELECT GPNUM FROM grandprix WHERE CIRNUM="+id+")";
+						//Il peut être important de loger la requête SQL dans la console
+						//console.log ("supprimerPilote : "+sql);
+
+						connexion.query(sql, callback);
+
+						// la connexion retourne dans le pool
+						connexion.release();
+
+				 }
+			});
+};
+
+module.exports.supprimerEssai = function (id,callback) {
+	 // connection à la base
+	db.getConnection(function(err, connexion){
+				if(!err){
+						let sql ="DELETE FROM essais WHERE GPNUM = (SELECT GPNUM FROM grandprix WHERE CIRNUM="+id+")";
+						//Il peut être important de loger la requête SQL dans la console
+						//console.log ("supprimerPilote : "+sql);
+
+						connexion.query(sql, callback);
+
+						// la connexion retourne dans le pool
+						connexion.release();
+
+				 }
+			});
+};
+
+module.exports.supprimerGP = function (id,callback) {
+	 // connection à la base
+	db.getConnection(function(err, connexion){
+				if(!err){
+						let sql ="DELETE FROM grandprix WHERE CIRNUM="+id;
+						//Il peut être important de loger la requête SQL dans la console
+						//console.log ("supprimerPilote : "+sql);
+
+						connexion.query(sql, callback);
+
+						// la connexion retourne dans le pool
+						connexion.release();
+
+				 }
+			});
+};
+
+module.exports.supprimerCircuit = function (id,callback) {
+	 // connection à la base
+	db.getConnection(function(err, connexion){
+				if(!err){
+						let sql ="DELETE FROM circuit WHERE CIRNUM="+id;
+						//Il peut être important de loger la requête SQL dans la console
+						//console.log ("supprimerCircuit : "+sql);
+
+						connexion.query(sql, callback);
+
+						// la connexion retourne dans le pool
+						connexion.release();
+
+				 }
+			});
+};

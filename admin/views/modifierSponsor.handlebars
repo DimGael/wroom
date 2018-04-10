@@ -1,0 +1,24 @@
+<h1>Modifier un sponsor</h1>
+
+
+{{#each infoSponsor}}
+
+  <form method="post" action='/sponsors/modifierSponsor/modificationOK/{{this.SPONUM}}'>
+
+  Nom : <input type="text" id="nom" name="SPONOM" required='true' value="{{this.SPONOM}}"> </br>
+
+  Secteur d'activité : <input type="text" name="SPOSECTACTIVITE" required='true' value="{{this.SPOSECTACTIVITE}}"></br>
+
+  Ecurie sponsorisé : <select name="ECUNUM">
+
+{{/each}}
+<option value="null">Aucune</option>
+
+  {{#each ecurieSponsorise}}
+     <option value="{{this.ECUNUM}}">{{this.ECUNOM}}</option>
+  {{/each}}
+   </select>
+  </br>
+
+   <input type="submit" value="MODIFIER">
+</form>

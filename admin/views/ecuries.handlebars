@@ -3,7 +3,7 @@
 
 <a href="/ecuries/ajouterEcurie"> <img src="/image/act_add.png "/> Ajouter une écurie</a>
 
-<table>
+<table class="tableau">
 <tr>
   <th>Nom</th>
   <th>Directeur</th>
@@ -16,9 +16,10 @@
     <td>{{this.ecunom}}</td>
     <td>{{this.ecunomdir}}</td>
     <td>{{this.ecupoints}}</td>
-    <td> <a href="/ecuries/modifierEcurie/{{this.ECUNUM}}">
+    <td> <a href="/ecuries/modifierEcurie/{{this.ecunom}}">
       <img src="/image/act_edit.png"/>Modifier</a>
-      <a href="/ecuries/supprimerEcurie/{{this.ECUNUM}}">
+
+      <a href="/ecuries/supprimerEcurie/{{this.ecunum}}">
         <img src="/image/act_delete.png"/>Supprimer</a>
   </tr>
 {{/each}}

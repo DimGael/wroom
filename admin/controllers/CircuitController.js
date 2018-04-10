@@ -1,6 +1,5 @@
 let model = require('../../models/circuit.js');
 let modelPays = require('../../models/pays.js');
-let modelGrandPrix = require('../../models/grandPrix.js');
 let async=require('async');
 
 
@@ -95,33 +94,38 @@ module.exports.ModificationCircuit = function(request, response){
     })
 }
 
+
+
 module.exports.SupprimerCircuit = function(request, response){
-  response.title = "Supression réussie"
-  let circuit_num = request.params.id;
+  let num = request.params.num;
 
-  model.getGrandPrix(circuit_num, function(err, result){
-        if (err) {
-            // gestion de l'erreur
-            console.log(err);
-            return;
-        }
+  async.parallel([
+    function(callback){
+      model.supprimerCourse(num,function(err,result){callback(null,result)});
+    },
 
-        //result contient un tableau de tous les gpnum associés
-        //result[0].gpnum, result[1].gpnum ...
+    function(callback){
+      model.supprimerEssai(num,function(err,result){callback(null,result)});
+    },
 
-        result.forEach(function(element){
-          let gpnum = element.gpnum;
+    function(callback){
+      model.supprimerGP(num,function(err,result){callback(null,result)});
+    },
 
-          modelGrandPrix.supprimerGrandPrix(gpnum, function(err, result)){
-            if (err) {
-                // gestion de l'erreur
-                console.log(err);
-                return;
-            }
-          }
-        })
+    function(callback){
+      model.supprimerCircuit(num,function(err,result){callback(null,result)});
+    }
 
-        response.nomPage = "Suppression du circuit finie !"
-        response.render('insertionOK', response);
-  })
+  ],
+
+    function(err,result){
+      if (err){
+        console.log(err);
+        return;
+      }
+
+    response.title = 'Suppression effectuée';
+    response.nomPage = " Suppression du pilote éffectuée"
+    response.render("suppressionOK", response);
+  });
 }

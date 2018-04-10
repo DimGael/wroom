@@ -19,24 +19,27 @@ module.exports.ListePiloteLettre = function(request, response){
   //Récupération de la lettre en paramètre
   let lettre = request.params.lettre;
    response.title = 'Répertoire des pilotes : récupération des lettres';
+   async.parallel([
+     function(callback){
+       model.getProfilPilote(lettre, function (err, result) {callback(null,result)});
+     },
 
+     function(callback){
+       model.getLettresPilotes( function (err, result) {callback(null,result)});
+     }
 
-  model.getProfilPilote(lettre, function(err,result){
-    if (err){
-      console.log(err);
-      return;
-    }
-    response.listePilote = result;
-  })
+   ],
 
-  model.getLettresPilotes( function (err, result) {
-     if (err) {
-         // gestion de l'erreur
+     function(err,result){
+       if (err){
          console.log(err);
          return;
-     }
-  response.listeLettres = result;
+       }
+
+  response.listeLettres = result[1];
+  response.listePilote = result[0];
   response.render('repertoirePilotes', response);
+
   });
 }
 

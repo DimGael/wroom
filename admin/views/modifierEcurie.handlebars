@@ -1,0 +1,30 @@
+
+
+<h1>Modifier une écurie</h1>
+
+{{#each infoEcurie}}
+<form method="post" action='/ecuries/modifierEcurie/modificationOK/{{this.ECUNUM}}'>
+  Nom : <input type="text" id="nom" name="ECUNOM" required='true' value="{{this.ECUNOM}}"> </br>
+
+  Directeur : <input type="text" id="dir" name="ECUNOMDIR" required='true' value="{{this.ECUNOMDIR}}"></br>
+
+  Adresse du siège : <input type="text" id="adrsiege" name="ECUADRSIEGE" required='true' value="{{this.ECUADRSIEGE}}"> </br>
+
+  Points : <input type="number" name="ECUPOINTS" required='true' value="{{this.ECUPOINTS}}"> pts </br>
+
+  Nationalité : <select id="nationalite" name="PAYNUM">
+
+  {{/each}}
+
+  {{#each nationaliteEcurie}}
+     <option value="{{this.PAYNUM}}">{{this.PAYNAT}}</option>
+  {{/each}}
+   </select>
+  </br>
+
+  {{#each infoEcurie}}
+  Image : <input type="file" name="ECUADRESSEIMAGE" required='true' value="{{this.ECUADRESSEIMAGE}}"/></br></br>
+
+  {{/each}}
+   <input type="submit" value="MODIFIER">
+</form>

@@ -21,7 +21,7 @@ module.exports.getListeEcurie = function (callback) {
 						let sql ="SELECT ecunum, payadrdrap, ecunom,ecunomdir,ecupoints FROM ecurie e INNER JOIN pays p ";
 						sql= sql + "ON p.paynum=e.paynum ORDER BY ecunom";
 						//Il peut être important de loger la requête SQL dans la console
-						console.log ("getListeEcurie : "+sql);
+						//console.log ("getListeEcurie : "+sql);
             connexion.query(sql, callback);
 
             // la connexion retourne dans le pool
@@ -100,7 +100,7 @@ module.exports.ajouterEcurie = function (ecurie,callback) {
 						let sql ="INSERT INTO ecurie(PAYNUM,ECUNOM,ECUNOMDIR,ECUADRSIEGE,ECUPOINTS,ECUADRESSEIMAGE,FPNUM) ";
 						sql = sql + "VALUES("+ecurie.PAYNUM+", '"+ ecurie.ECUNOM+"', '"+ecurie.ECUNOMDIR+"', '"+ecurie.ECUADRSIEGE+"',"+ ecurie.ECUPOINTS +",'"+ ecurie.ECUADRESSEIMAGE+"', "+1+")"
 						//Il peut être important de loger la requête SQL dans la console
-						console.log ("ajouterEcurie : "+sql);
+						//console.log ("ajouterEcurie : "+sql);
             connexion.query(sql, callback);
 
             // la connexion retourne dans le pool
@@ -109,3 +109,119 @@ module.exports.ajouterEcurie = function (ecurie,callback) {
          }
       });
 };
+
+
+module.exports.ecurieAModifier = function(nom, callback){
+
+	db.getConnection(function(err, connexion){
+        if(!err){
+
+						let sql ="SELECT e.ECUNUM,e.ECUNOM, e.FPNUM, e.ECUNOMDIR, e.ECUADRSIEGE, e.ECUPOINTS, e.ECUADRESSEIMAGE FROM ecurie e "
+						sql = sql+"WHERE e.ECUNOM='"+nom+"'";
+
+						//Il peut être important de loger la requête SQL dans la console
+
+            connexion.query(sql, callback);
+
+            // la connexion retourne dans le pool
+            connexion.release();
+
+						//console.log ("piloteAModifier : "+sql);
+         }
+      });
+};
+
+
+
+
+module.exports.modifierEcurie = function (ecurie,id,callback) {
+   // connection à la base
+	db.getConnection(function(err, connexion){
+        if(!err){
+						let sql ="update ecurie set ECUNOM='"+ecurie.ECUNOM+"',ECUNOMDIR='"+ecurie.ECUNOMDIR+"',ECUADRSIEGE='"+ecurie.ECUADRSIEGE+"',ECUPOINTS="+ecurie.ECUPOINTS+",PAYNUM="+ecurie.PAYNUM+',ECUADRESSEIMAGE="'+ecurie.ECUADRESSEIMAGE+'"';
+						sql = sql + " WHERE ECUNUM="+id;
+						//Il peut être important de loger la requête SQL dans la console
+						//console.log ("modifierEcurie : "+sql);
+
+            connexion.query(sql, callback);
+
+            // la connexion retourne dans le pool
+            connexion.release();
+
+         }
+      });
+};
+
+
+
+
+
+
+
+ module.exports.supprimerFinance = function (id,callback) {
+    // connection à la base
+ 	db.getConnection(function(err, connexion){
+         if(!err){
+ 						let sql ="DELETE FROM finance WHERE ECUNUM="+id;
+ 						//Il peut être important de loger la requête SQL dans la console
+ 						//console.log ("supprimerFinance : "+sql);
+
+             connexion.query(sql, callback);
+
+             // la connexion retourne dans le pool
+             connexion.release();
+
+          }
+       });
+ };
+
+ module.exports.supprimerVoiture = function (id,callback) {
+    // connection à la base
+   db.getConnection(function(err, connexion){
+         if(!err){
+             let sql ="DELETE FROM voiture WHERE ECUNUM="+id;
+             //Il peut être important de loger la requête SQL dans la console
+             //console.log ("supprimerSponsorise : "+sql);
+
+             connexion.query(sql, callback);
+
+             // la connexion retourne dans le pool
+             connexion.release();
+
+          }
+       });
+ };
+
+ module.exports.supprimerPilote = function (id,callback) {
+    // connection à la base
+ 	db.getConnection(function(err, connexion){
+         if(!err){
+ 						let sql ="update pilote set ECUNUM=null WHERE ECUNUM="+id;
+ 						//Il peut être important de loger la requête SQL dans la console
+ 						//console.log ("supprimerSponsor : "+sql);
+
+             connexion.query(sql, callback);
+
+             // la connexion retourne dans le pool
+             connexion.release();
+
+          }
+       });
+ };
+
+ module.exports.supprimerEcurie = function (id,callback) {
+		// connection à la base
+	 db.getConnection(function(err, connexion){
+				 if(!err){
+						 let sql ="DELETE FROM ecurie WHERE ECUNUM="+id;
+						 //Il peut être important de loger la requête SQL dans la console
+						 //console.log ("supprimerSponsor : "+sql);
+
+						 connexion.query(sql, callback);
+
+						 // la connexion retourne dans le pool
+						 connexion.release();
+
+					}
+			 });
+ };

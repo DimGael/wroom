@@ -7,7 +7,7 @@ module.exports.verifierConnexion = function (login, mdpCrypte, callback) {
         if(!err){
 						let sql ="SELECT login, passwd FROM login WHERE login = '" + login + "' AND passwd = '"+ mdpCrypte +"'";
 						//Il peut être important de loger la requête SQL dans la console
-						console.log ("verifierConnexion : "+sql);
+						//console.log ("verifierConnexion : "+sql);
             connexion.query(sql, callback);
 
             // la connexion retourne dans le pool

@@ -1,7 +1,9 @@
+
+
 <h1>Gestion des pilotes :</h1>
-<h2><a href="pilotes/ajouterPilote"><img src="/image/act_add.png "/> Ajouter un pilote </a></h2>
+<a href="pilotes/ajouterPilote"><img src="/image/act_add.png "/> Ajouter un pilote </a>
 {{#if listePilote}}
-<table>
+<table class="tableau">
   <tr><th> Nom </th>
       <th> Prénom </th>
       <th> Date de naissance </th>
@@ -10,8 +12,8 @@
 {{#each listePilote}}
 <tr>  <td> {{this.PILNOM}} </td>
       <td> {{this.PILPRENOM}} </td>
-      <td>{{this.PILDATENAIS}} </td>
-      <td> <a href="/pilotes/modifierPilote/{{this.PILNOM}}"><img src="/image/act_edit.png" alt="modifier"/> Modifier </a> <a href="/pilotes/supprimerPilote/{{this.PILNOM}}"><img src="/image/act_delete.png" alt="supprimer"/> Supprimer </a>
+      <td> {{this.PILDATENAIS}}</td>
+      <td> <a href="/pilotes/modifierPilote/{{this.PILNOM}}"><img src="/image/act_edit.png" alt="modifier"/> Modifier </a> <a href="/pilotes/supprimerPilote/{{this.PILNUM}}"><img src="/image/act_delete.png" alt="supprimer"/> Supprimer </a>
 </tr>
 {{/each}}
 </table>

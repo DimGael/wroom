@@ -126,9 +126,9 @@ module.exports.getPilotes = function (callback) {
    // connection à la base
 	db.getConnection(function(err, connexion){
         if(!err){
-						let sql ="SELECT PILNOM,PILPRENOM,PILDATENAIS FROM pilote ORDER BY PILNOM";
+						let sql ="SELECT PILNUM,PILNOM,PILPRENOM,PILDATENAIS FROM pilote ORDER BY PILNOM";
 						//Il peut être important de loger la requête SQL dans la console
-						console.log ("getLettresPilotes : "+sql);
+						//console.log ("getLettresPilotes : "+sql);
             connexion.query(sql, callback);
 
             // la connexion retourne dans le pool
@@ -194,9 +194,8 @@ module.exports.piloteAModifier = function(nom, callback){
 	db.getConnection(function(err, connexion){
         if(!err){
 
-						let sql ="SELECT p.PILNUM,p.PILNOM, p.PILPRENOM, p.PILPOIDS, p.PILTAILLE, p.PILDATENAIS, p.PILTEXTE,p.PILPOINTS, pa.PAYNAT,e.ECUNOM FROM pilote p "
-						sql = sql+" INNER JOIN ECURIE e ON e.ECUNUM=p.ECUNUM INNER JOIN pays pa ON pa.PAYNUM=e.PAYNUM "
-						sql = sql+"WHERE p.PILNOM='"+nom+"'";
+						let sql ="SELECT p.PILNUM,p.PILNOM, p.PILPRENOM, p.PILPOIDS, p.PILTAILLE, p.PILDATENAIS, p.PILTEXTE,p.PILPOINTS FROM pilote p "
+						sql = sql+'WHERE p.PILNOM="'+nom+'"';
 
 						//Il peut être important de loger la requête SQL dans la console
 
@@ -205,10 +204,10 @@ module.exports.piloteAModifier = function(nom, callback){
             // la connexion retourne dans le pool
             connexion.release();
 
-						console.log ("piloteAModifier : "+sql);
+						//console.log ("piloteAModifier : "+sql);
          }
       });
-}
+};
 
 module.exports.modifierPilote = function (pilote,id,callback) {
    // connection à la base
@@ -217,7 +216,7 @@ module.exports.modifierPilote = function (pilote,id,callback) {
 						let sql ="update pilote set PILNOM='"+pilote.PILNOM+"',PILPRENOM='"+pilote.PILPRENOM+"',PILDATENAIS='"+pilote.PILDATENAIS+"',PILPOIDS="+pilote.PILPOIDS+",PILTAILLE="+pilote.PILTAILLE+',PILTEXTE="'+pilote.PILTEXTE+'"'+",PILPOINTS="+pilote.PILPOINTS+",ECUNUM="+pilote.ECUNUM+",PAYNUM="+pilote.PAYNUM;
 						sql = sql + " WHERE PILNUM="+id;
 						//Il peut être important de loger la requête SQL dans la console
-						console.log ("modifierPilote : "+sql);
+						//console.log ("modifierPilote : "+sql);
 
             connexion.query(sql, callback);
 
@@ -227,3 +226,97 @@ module.exports.modifierPilote = function (pilote,id,callback) {
          }
       });
 };
+
+
+
+
+
+
+
+ module.exports.supprimerCourse = function (id,callback) {
+    // connection à la base
+ 	db.getConnection(function(err, connexion){
+         if(!err){
+ 						let sql ="DELETE FROM course WHERE PILNUM="+id;
+ 						//Il peut être important de loger la requête SQL dans la console
+ 						//console.log ("supprimerFinance : "+sql);
+
+             connexion.query(sql, callback);
+
+             // la connexion retourne dans le pool
+             connexion.release();
+
+          }
+       });
+ };
+
+ module.exports.supprimerSponsorise = function (id,callback) {
+    // connection à la base
+   db.getConnection(function(err, connexion){
+         if(!err){
+             let sql ="DELETE FROM sponsorise WHERE PILNUM="+id;
+             //Il peut être important de loger la requête SQL dans la console
+             //console.log ("supprimerSponsorise : "+sql);
+
+             connexion.query(sql, callback);
+
+             // la connexion retourne dans le pool
+             connexion.release();
+
+          }
+       });
+ };
+
+ module.exports.supprimerEssai = function (id,callback) {
+    // connection à la base
+ 	db.getConnection(function(err, connexion){
+         if(!err){
+ 						let sql ="DELETE FROM essais WHERE PILNUM="+id;
+ 						//Il peut être important de loger la requête SQL dans la console
+ 						//console.log ("supprimerSponsor : "+sql);
+
+             connexion.query(sql, callback);
+
+             // la connexion retourne dans le pool
+             connexion.release();
+
+          }
+       });
+ };
+
+
+
+  module.exports.supprimerPhoto = function (id,callback) {
+     // connection à la base
+    db.getConnection(function(err, connexion){
+          if(!err){
+              let sql ="DELETE FROM photo WHERE PILNUM="+id;
+              //Il peut être important de loger la requête SQL dans la console
+              //console.log ("supprimerSponsorise : "+sql);
+
+              connexion.query(sql, callback);
+
+              // la connexion retourne dans le pool
+              connexion.release();
+
+           }
+        });
+  };
+
+
+	 module.exports.supprimerPilote = function (id,callback) {
+	    // connection à la base
+	   db.getConnection(function(err, connexion){
+	         if(!err){
+	             let sql ="DELETE FROM pilote WHERE PILNUM="+id;
+	             //Il peut être important de loger la requête SQL dans la console
+	             //console.log ("supprimerPilote : "+sql);
+
+	             connexion.query(sql, callback);
+
+	             // la connexion retourne dans le pool
+	             connexion.release();
+
+	          }
+	       });
+	 };

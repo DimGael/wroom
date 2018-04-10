@@ -5,7 +5,7 @@ module.exports.getListeResultats = function (callback) {
    // connection à la base
 	db.getConnection(function(err, connexion){
         if(!err){
-						let sql ="SELECT g.GPNOM,p.PAYADRDRAP FROM grandprix g ";
+						let sql ="SELECT g.GPNUM,g.GPNOM,p.PAYADRDRAP FROM grandprix g ";
             sql=sql+"INNER JOIN circuit c ON c.CIRNUM=g.CIRNUM ";
             sql=sql+"INNER JOIN pays p ON p.PAYNUM=c.PAYNUM";
 						//Il peut être important de loger la requête SQL dans la console

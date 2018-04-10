@@ -116,3 +116,42 @@ module.exports.ModificationPilote = function(request, response){
   });
 
 }
+
+
+module.exports.SupprimerPilote = function(request, response){
+  let num = request.params.num;
+
+  async.parallel([
+    function(callback){
+      model.supprimerPhoto(num, function (err, result) {callback(null,result)});
+    },
+
+    function(callback){
+      model.supprimerCourse(num,function(err,result){callback(null,result)});
+    },
+
+    function(callback){
+      model.supprimerEssai(num,function(err,result){callback(null,result)});
+    },
+
+    function(callback){
+      model.supprimerSponsorise(num,function(err,result){callback(null,result)});
+    },
+
+    function(callback){
+      model.supprimerPilote(num,function(err,result){callback(null,result)});
+    }
+
+  ],
+
+    function(err,result){
+      if (err){
+        console.log(err);
+        return;
+      }
+
+    response.title = 'Suppression effectuée';
+    response.nomPage = " Suppression du pilote éffectuée"
+    response.render("suppressionOK", response);
+  });
+}

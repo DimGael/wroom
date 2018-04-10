@@ -1,0 +1,14 @@
+<h1>Gestion des resultats :</h1>
+
+<CENTER><img src="/image/cat_resultat.png" alt="image resultats"></CENTER>
+
+<CENTER> Selectionnez un grand prix : </CENTER>
+<form method="get" action='/resultats/'>
+  <select id="gprix" name="pilote">
+  {{#each listeGP}}
+    <option value="{{this.GPNUM}}">{{this.GPNOM}}</option>
+  {{/each}}
+<br/><br/>
+  <input type="submit" value="VALIDER"><br/><br/>
+
+  SUITE NON FONCTIONNELLE
